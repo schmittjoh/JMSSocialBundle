@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+	<parameters>
+		<parameter key="jms_social.templating.social_helper.class">JMS\SocialBundle\Templating\SocialHelper</parameter>
+		<parameter key="jms_social.twig.social_extension.class">JMS\SocialBundle\Twig\SocialExtension</parameter>
+	</parameters>
+
+    <services>
+    	<service id="jms_social.templating.social_helper" class="%jms_social.templating.social_helper.class%" public="false">
+    		<argument type="collection" /><!-- Tweet-Button default config -->
+    		<call method="setContainer">
+    			<argument type="service" id="service_container" />
+    		</call>
+    		<tag name="templating.helper" alias="social" />
+    	</service>
+    	
+    	<service id="jms_social.twig.social_extension" class="%jms_social.twig.social_extension.class%" public="false">
+    		<argument type="service" id="jms_social.templating.social_helper" />
+    		<tag name="twig.extension" />
+    	</service>
+    </services>
+</container>

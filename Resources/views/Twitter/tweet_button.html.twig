@@ -1,0 +1,19 @@
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="{{ config.count }}" data-lang="{{ app.session.locale }}"
+
+{%- if config.via is defined %}
+ data-via="{{ config.via }}"
+{% endif -%}
+
+{%- if config.url is defined %}
+ data-url="{{ config.url }}"
+{% endif -%}
+
+{%- if config.related is defined %}
+ data-related="{{ config.related.name }}{% if config.related.description is defined %}:{{ config.related.description }}{% endif %}"
+{% endif -%}
+
+{%- if config.text is defined %}
+ data-text="{{ config.text }}"
+{% endif -%}
+
+>Tweet</a>
